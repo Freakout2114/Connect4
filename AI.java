@@ -1,11 +1,10 @@
 
-public abstract class AI 
-{
+public abstract class AI {
     protected int playerNumber;
     
-    public abstract int getNextMove(int[][] board);
+    public abstract int getNextMove(Board board);
     
-    AI() {
+    public AI() {
     }
     
     public void setPlayerNumber(int playerNumber) {

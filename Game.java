@@ -30,7 +30,7 @@ class Game {
     public void play() {
         int round = 0;
         do {
-            playersTurn = round%2 + 1;
+            playersTurn = 3 - playersTurn;
             System.out.println("\nRound: " + round + ", Player " + playersTurn);
             
             if (playersTurn == 1)

@@ -1,6 +1,5 @@
 
-class Board
-{
+class Board {
     private int[][] board;
     private int boardWidth;
     private int boardHeight;
@@ -9,6 +8,13 @@ class Board
         boardWidth = width;
         boardHeight = height;
         initialiseBoard();
+    }
+    
+    Board(int[][] boardCopy) {
+        board = new int[boardCopy.length][boardCopy[0].length];
+        for (int x = 0; x < boardCopy.length; x++)
+        for (int y = 0; y < boardCopy[0].length; y++)
+            board[x][y] = boardCopy[x][y];
     }
     
     // Initialise a new Board[width][height].
@@ -20,14 +26,12 @@ class Board
                 board[x][y] = 0;
     }
     
-    public int[][] getBoard() {
-        int[][] boardCopy = new int[board.length][board[0].length];
-        
-        for (int x = 0; x < board.length; x++)
-        for (int y = 0; y < board[0].length; y++)
-            boardCopy[x][y] = board[x][y];
-        
-        return boardCopy;
+    public Board getBoard() {
+        return new Board(board);
+    }
+    
+    public int getToken(int x, int y) {
+        return board[x][y];
     }
     
     // Display the current Board state, O = player 1, X = Player 2.
@@ -75,6 +79,8 @@ class Board
     
     // Check if either player has won.
     public boolean checkWin() {
+        System.out.println("Checking Win");
+        
         if (checkDiagonalLeft() || checkDiagonalRight() || checkHorizontal() || checkVertical()) 
             return true;
         
@@ -187,5 +193,17 @@ class Board
         }// End for player
         
         return false;
+    }
+    
+    public boolean isColumnFull(int column) {
+        return board[column][0] != 0;
+    }
+    
+    public int getBoardWidth() {
+        return board.length;
+    }
+    
+    public int getBoardHeight() {
+        return board[0].length;
     }
 }
